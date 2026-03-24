@@ -14,6 +14,23 @@
     "indentStyle": "space",
     "indentWidth": 2
   },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "asNeeded"
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
+      "javascript": {
+        "formatter": {
+          "quoteStyle": "single",
+          "semicolons": "asNeeded"
+        }
+      }
+    }
+  ],
   "linter": {
     "enabled": true,
     "rules": {
