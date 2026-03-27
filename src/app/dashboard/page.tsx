@@ -7,7 +7,6 @@ export default function DashboardHomePage() {
           Database features are disabled for this deployment.
         </p>
       </header>
-
       <section className="overflow-hidden rounded-lg border border-zinc-200 bg-white">
         <div className="px-4 py-4 text-zinc-500">
           The dashboard data table is temporarily unavailable while DB
