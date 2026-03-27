@@ -25,3 +25,19 @@ export const productsTable = sqliteTable('products_table', {
     description?: string
   } | null>(),
 })
+
+export const productImagesTable = sqliteTable('product_images_table', {
+  id: int().primaryKey({ autoIncrement: true }),
+  productId: int()
+    .notNull()
+    .references(() => productsTable.id, { onDelete: 'cascade' }),
+  url: text().notNull(),
+  alt: text(),
+  width: int(),
+  height: int(),
+  mimeType: text(),
+  position: int().notNull().default(0),
+  isPrimary: int().notNull().default(0),
+  createdAt: text().notNull().default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: text().notNull().default(sql`CURRENT_TIMESTAMP`),
+})
