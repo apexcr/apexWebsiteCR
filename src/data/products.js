@@ -1,50 +1,36 @@
-export const products = [
-  {
-    id: 1,
-    category: "Recuperacion",
-    name: "TB-500 Peptido",
-    rating: 4.9,
-    reviews: 3969,
-    originalPrice: "$55.00",
-    price: "$45.00",
-    capClass: "bg-brand-primary",
-    borderTopClass: "",
-    glowClass: "bg-brand-primary",
-    overlayGlowClass: "bg-gradient-to-b from-brand-primary/5 to-transparent",
-    hoverNameColor: "group-hover:text-cyan-400",
-    vialName: "TB-500",
-    vialDose: "10 MG",
-  },
-  {
-    id: 2,
-    category: "Curacion",
-    name: "BPC-157 Peptido",
-    rating: 5.0,
-    reviews: 2150,
-    originalPrice: "$65.00",
-    price: "$55.00",
-    capClass: "bg-accent-red",
-    borderTopClass: "border-t-4 border-t-accent-red",
-    glowClass: "bg-accent-red",
-    overlayGlowClass: "bg-gradient-to-b from-accent-red/10 to-transparent",
-    hoverNameColor: "group-hover:text-red-500",
-    vialName: "BPC-157",
-    vialDose: "5 MG",
-  },
-  {
-    id: 3,
-    category: "Hormona de Crecimiento",
-    name: "Ipamorelin Peptido",
-    rating: 4.8,
-    reviews: 1842,
-    originalPrice: null,
-    price: "$38.00",
-    capClass: "bg-accent-green",
-    borderTopClass: "border-t-4 border-t-accent-green",
-    glowClass: "bg-accent-green",
-    overlayGlowClass: "bg-gradient-to-b from-accent-green/10 to-transparent",
-    hoverNameColor: "group-hover:text-green-500",
-    vialName: "IPAMORELIN",
-    vialDose: "2 MG",
-  },
-];
+import productsData from "./products.json";
+
+export const products = productsData;
+
+export function getHeroProduct() {
+  return products.find((product) => product.isHero) ?? products[0] ?? null;
+}
+
+export function getTopSellerProducts() {
+  return products.filter((product) => product.isTopSeller);
+}
+
+export function groupProductsByCategory(productList) {
+  return productList.reduce((acc, product) => {
+    const category = product.category || "Otros";
+
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+
+    acc[category].push(product);
+    return acc;
+  }, {});
+}
+
+export function getDiscountedPrice(product) {
+  if (!product?.discount) return product?.price ?? 0;
+  return product.price * (1 - product.discount / 100);
+}
+
+export function formatMoney(value) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(value ?? 0);
+}

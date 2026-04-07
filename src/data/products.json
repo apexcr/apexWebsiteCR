@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "TB-500",
+    "image": "/images/products/tb-500.jpg",
+    "category": "Recuperacion",
+    "stars": 4.9,
+    "price": 55,
+    "discount": 18,
+    "description": "Peptido usado en protocolos orientados a recuperacion y soporte de tejidos.",
+    "isTopSeller": true,
+    "isHero": true
+  },
+  {
+    "id": 2,
+    "title": "BPC-157",
+    "image": "/images/products/bpc-157.jpg",
+    "category": "Curacion",
+    "stars": 4.8,
+    "price": 62,
+    "discount": 16,
+    "description": "Peptido popular en rutinas de bienestar para soporte de recuperacion integral.",
+    "isTopSeller": true,
+    "isHero": false
+  },
+  {
+    "id": 3,
+    "title": "Ipamorelin",
+    "image": "/images/products/ipamorelin.jpg",
+    "category": "GH Secretagogo",
+    "stars": 4.7,
+    "price": 48,
+    "discount": 10,
+    "description": "Secretagogo de hormona de crecimiento comun en stacks de rendimiento y descanso.",
+    "isTopSeller": true,
+    "isHero": false
+  },
+  {
+    "id": 4,
+    "title": "CJC-1295",
+    "image": "/images/products/cjc-1295.jpg",
+    "category": "GH Secretagogo",
+    "stars": 4.8,
+    "price": 64,
+    "discount": 12,
+    "description": "Peptido de larga accion utilizado en planes de optimizacion y composicion corporal.",
+    "isTopSeller": true,
+    "isHero": false
+  },
+  {
+    "id": 5,
+    "title": "GHK-Cu",
+    "image": "/images/products/ghk-cu.jpg",
+    "category": "Regeneracion",
+    "stars": 4.6,
+    "price": 42,
+    "discount": 8,
+    "description": "Peptido de cobre ampliamente usado para protocolos de piel y regeneracion cosmetica.",
+    "isTopSeller": false,
+    "isHero": false
+  }
+]

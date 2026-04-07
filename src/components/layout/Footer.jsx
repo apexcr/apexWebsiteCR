@@ -17,7 +17,7 @@ export function Footer() {
     <footer className="bg-app-black mt-auto border-t border-gray-900 px-6 pt-28 pb-12 lg:px-16">
       <div className="mx-auto mb-20 grid w-full max-w-[1400px] grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
         <div className="space-y-8 lg:col-span-4">
-          <div className="font-oswald flex items-center text-3xl font-black tracking-[0.1em] text-white uppercase italic">
+          <div className="flex items-center text-3xl font-black tracking-[0.1em] text-white uppercase italic">
             APEX <span className="text-brand-primary mx-1">X</span> PEPTIDOS
           </div>
           <p className="max-w-sm text-sm leading-loose font-medium text-gray-400">
@@ -27,7 +27,7 @@ export function Footer() {
         </div>
 
         <div className="lg:col-span-3">
-          <h4 className="font-oswald mb-8 text-xl font-black tracking-[0.15em] text-white uppercase">
+          <h4 className="mb-8 text-xl font-black tracking-[0.15em] text-white uppercase">
             Enlaces Rapidos
           </h4>
           <ul className="space-y-5 text-sm font-medium text-gray-400">
@@ -39,7 +39,7 @@ export function Footer() {
         </div>
 
         <div className="lg:col-span-2">
-          <h4 className="font-oswald mb-8 text-xl font-black tracking-[0.15em] text-white uppercase">
+          <h4 className="mb-8 text-xl font-black tracking-[0.15em] text-white uppercase">
             Soporte
           </h4>
           <ul className="space-y-5 text-sm font-medium text-gray-400">

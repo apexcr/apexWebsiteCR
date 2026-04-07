@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { MiniCartSheet } from "../cart/MiniCartSheet";
 import { AnnouncementBar } from "./AnnouncementBar";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
@@ -18,6 +19,7 @@ export function AppLayout({ children }) {
         open={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
       />
+      <MiniCartSheet />
       <main className="flex-1">{children}</main>
       <Footer />
     </div>

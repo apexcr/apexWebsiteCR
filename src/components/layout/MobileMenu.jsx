@@ -1,11 +1,15 @@
+import { Button } from "@/components/ui/button";
+
 export function MobileMenu({ open, onClose }) {
   if (!open) return null;
 
   return (
     <div className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-black/90">
-      <button
+      <Button
         type="button"
-        className="absolute top-6 right-6 text-white hover:text-cyan-400"
+        variant="mobileIcon"
+        size="icon-lg"
+        className="absolute top-6 right-6"
         onClick={onClose}
       >
         <svg
@@ -22,7 +26,7 @@ export function MobileMenu({ open, onClose }) {
             d="M6 18L18 6M6 6l12 12"
           />
         </svg>
-      </button>
+      </Button>
       <ul className="flex flex-col items-center space-y-8 text-2xl font-bold uppercase tracking-widest text-gray-300">
         <li>
           <a
