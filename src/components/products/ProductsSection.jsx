@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useCart } from "../../context/CartContext";
 import { getTopSellerProducts, products } from "../../data/products";
 import { Badge } from "../ui/badge";
-import { ProductCard } from "./ProductCard";
+import { HomeProductCard } from "./HomeProductCard";
 
 export function ProductsSection() {
   const [cartAdded, setCartAdded] = useState({});
@@ -41,7 +41,7 @@ export function ProductsSection() {
 
         <div className="no-scrollbar flex snap-x snap-mandatory gap-8 overflow-x-auto pb-10">
           {productList.map((product) => (
-            <ProductCard
+            <HomeProductCard
               key={product.id}
               product={product}
               onAddToCart={handleAddToCart}

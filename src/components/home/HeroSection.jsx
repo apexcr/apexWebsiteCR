@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/context/CartContext";
 import {
   formatMoney,
   getDiscountedPrice,
@@ -10,12 +11,18 @@ import { useNavigate } from "@tanstack/react-router";
 export function HeroSection() {
   const heroProduct = getHeroProduct();
   const navigate = useNavigate();
+  const { addToCart, setIsCartOpen } = useCart();
 
   if (!heroProduct) {
     return null;
   }
 
   const heroPrice = getDiscountedPrice(heroProduct);
+
+  const handleBuyNow = () => {
+    addToCart(heroProduct);
+    setIsCartOpen(true);
+  };
 
   return (
     <section className="relative flex min-h-[90vh] w-full items-center overflow-hidden border-b border-gray-800 bg-black px-6 py-12 lg:px-16">
@@ -56,6 +63,7 @@ export function HeroSection() {
               variant="heroPrimary"
               size="heroPrimary"
               className="duration-300"
+              onClick={handleBuyNow}
             >
               COMPRAR AHORA
             </Button>

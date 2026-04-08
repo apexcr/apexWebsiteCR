@@ -10,6 +10,12 @@ export function getTopSellerProducts() {
   return products.filter((product) => product.isTopSeller);
 }
 
+export function getProductById(id) {
+  const normalizedId = Number(id);
+  if (Number.isNaN(normalizedId)) return null;
+  return products.find((product) => product.id === normalizedId) ?? null;
+}
+
 export function groupProductsByCategory(productList) {
   return productList.reduce((acc, product) => {
     const category = product.category || "Otros";

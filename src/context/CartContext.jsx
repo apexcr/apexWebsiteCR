@@ -1,5 +1,5 @@
-import { getDiscountedPrice } from "@/data/products";
 import { createContext, useContext, useMemo, useState } from "react";
+import { getDiscountedPrice } from "@/data/products";
 
 const CartContext = createContext(null);
 

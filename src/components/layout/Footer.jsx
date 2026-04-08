@@ -1,20 +1,25 @@
+import { Link } from "@tanstack/react-router";
+
 function FooterLink({ children }) {
   return (
     <li>
-      <a
-        href="/"
+      <Link
+        to="/"
         className="group flex items-center gap-3 transition-colors hover:text-cyan-400"
       >
         <span className="h-1.5 w-1.5 rounded-full bg-gray-700 transition-colors group-hover:bg-cyan-400" />
         {children}
-      </a>
+      </Link>
     </li>
   );
 }
 
 export function Footer() {
   return (
-    <footer className="bg-app-black mt-auto border-t border-gray-900 px-6 pt-28 pb-12 lg:px-16">
+    <footer
+      id="contacto"
+      className="bg-app-black mt-auto border-t border-gray-900 px-6 pt-28 pb-12 lg:px-16"
+    >
       <div className="mx-auto mb-20 grid w-full max-w-[1400px] grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
         <div className="space-y-8 lg:col-span-4">
           <div className="flex items-center text-3xl font-black tracking-[0.1em] text-white uppercase italic">

@@ -19,7 +19,7 @@ const buttonVariants = cva(
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-primary underline-offset-4 hover:underline",
         heroPrimary:
-          "border border-cyan-400/50 bg-gradient-to-r from-cyan-500 to-blue-600 font-black text-white uppercase shadow-[0_0_40px_rgba(0,212,255,0.4)] hover:from-cyan-400 hover:to-blue-500",
+          "border border-cyan-400/50 bg-gradient-to-r from-cyan-500 to-blue-600 font-black text-white uppercase shadow-[0_0_40px_rgba(0,212,255,0.4)] hover:from-cyan-400 hover:to-blue-500 disabled:border-gray-500/60 disabled:from-gray-500 disabled:to-gray-600 disabled:text-gray-200 disabled:shadow-none",
         heroSecondary:
           "border-2 border-gray-700 bg-transparent font-bold text-gray-400 uppercase hover:border-cyan-500 hover:text-cyan-400",
         mobileIcon: "text-white hover:text-cyan-400",

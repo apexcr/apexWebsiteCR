@@ -9,6 +9,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { useCart } from "@/context/CartContext";
+import { useNavigate } from "@tanstack/react-router";
 
 function formatCurrency(value) {
   return new Intl.NumberFormat("en-US", {
@@ -18,6 +19,7 @@ function formatCurrency(value) {
 }
 
 export function MiniCartSheet() {
+  const navigate = useNavigate();
   const {
     cartCount,
     cartItems,
@@ -28,6 +30,11 @@ export function MiniCartSheet() {
     updateItemQuantity,
   } = useCart();
 
+  const handleGoToCheckout = () => {
+    setIsCartOpen(false);
+    navigate({ to: "/checkout" });
+  };
+
   return (
     <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
       <SheetContent
@@ -36,10 +43,10 @@ export function MiniCartSheet() {
       >
         <SheetHeader className="border-b border-gray-200 px-6 py-5">
           <SheetTitle className="font-mono text-xl font-bold uppercase tracking-wide text-black">
-            Your Cart
+            Tu carrito
           </SheetTitle>
           <SheetDescription className="font-mono text-gray-600 uppercase tracking-wide">
-            {cartCount} {cartCount === 1 ? "item" : "items"}
+            {cartCount} {cartCount === 1 ? "artículo" : "artículos"}
           </SheetDescription>
         </SheetHeader>
 
@@ -50,7 +57,7 @@ export function MiniCartSheet() {
                 <CartIcon />
               </div>
               <p className="font-mono text-sm uppercase tracking-wide text-gray-600">
-                Your cart is empty
+                Tu carrito está vacío
               </p>
             </div>
           ) : (
@@ -76,7 +83,7 @@ export function MiniCartSheet() {
                       className="font-mono text-xs font-bold tracking-wide text-gray-500 uppercase hover:text-black"
                       onClick={() => removeFromCart(item.id)}
                     >
-                      Remove
+                      Eliminar
                     </Button>
                   </div>
 
@@ -135,8 +142,10 @@ export function MiniCartSheet() {
             variant="heroPrimary"
             size="heroPrimary"
             className="w-full justify-center"
+            disabled={cartItems.length === 0}
+            onClick={handleGoToCheckout}
           >
-            Checkout
+            Finalizar compra
           </Button>
         </SheetFooter>
       </SheetContent>

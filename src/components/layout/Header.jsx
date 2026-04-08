@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
+import { Link } from "@tanstack/react-router";
 import { CartIcon } from "../icons/CartIcon";
 
 export function Header({ mobileMenuOpen, setMobileMenuOpen }) {
@@ -11,23 +12,31 @@ export function Header({ mobileMenuOpen, setMobileMenuOpen }) {
       <nav className="hidden items-center md:flex">
         <ul className="flex space-x-10 text-[13px] tracking-[0.15em] text-gray-400">
           <li>
-            <a
-              href="/"
-              className="text-brand-primary transition-colors hover:text-white"
+            <Link
+              to="/"
+              activeOptions={{ exact: true }}
+              className="transition-colors"
+              activeProps={{ className: "text-brand-primary" }}
+              inactiveProps={{ className: "text-gray-400 hover:text-white" }}
             >
               Inicio
-            </a>
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/products"
+              className="transition-colors"
+              activeProps={{ className: "text-brand-primary" }}
+              inactiveProps={{ className: "text-gray-400 hover:text-cyan-400" }}
+            >
+              Productos
+            </Link>
           </li>
           <li>
             <a
-              href="/products"
-              className="transition-colors hover:text-cyan-400"
+              href="#contacto"
+              className="text-gray-400 transition-colors hover:text-cyan-400"
             >
-              Productos
-            </a>
-          </li>
-          <li>
-            <a href="/" className="transition-colors hover:text-cyan-400">
               Contacto
             </a>
           </li>

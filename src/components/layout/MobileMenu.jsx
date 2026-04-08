@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "@tanstack/react-router";
 
 export function MobileMenu({ open, onClose }) {
   if (!open) return null;
@@ -29,31 +30,39 @@ export function MobileMenu({ open, onClose }) {
       </Button>
       <ul className="flex flex-col items-center space-y-8 text-2xl font-bold uppercase tracking-widest text-gray-300">
         <li>
-          <a
-            href="/"
-            className="transition-colors hover:text-cyan-400"
+          <Link
+            to="/"
+            activeOptions={{ exact: true }}
+            className="transition-colors"
+            activeProps={{ className: "text-brand-primary" }}
+            inactiveProps={{ className: "text-gray-300 hover:text-cyan-400" }}
             onClick={onClose}
           >
             Inicio
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="/"
-            className="transition-colors hover:text-cyan-400"
+          <Link
+            to="/products"
+            className="transition-colors"
+            activeProps={{ className: "text-brand-primary" }}
+            inactiveProps={{ className: "text-gray-300 hover:text-cyan-400" }}
             onClick={onClose}
           >
             Productos
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="/"
-            className="transition-colors hover:text-cyan-400"
-            onClick={onClose}
+          <button
+            type="button"
+            className="text-gray-300 transition-colors hover:text-cyan-400"
+            onClick={() => {
+              window.location.hash = "contacto";
+              onClose();
+            }}
           >
             Contacto
-          </a>
+          </button>
         </li>
       </ul>
     </div>

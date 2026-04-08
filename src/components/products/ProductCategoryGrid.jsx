@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { ShopifyProductCard } from "./ShopifyProductCard";
+import { ProductCard } from "./ProductCard";
 
 export function ProductCategoryGrid({
   category,
@@ -9,16 +9,16 @@ export function ProductCategoryGrid({
 }) {
   return (
     <section className="space-y-6">
-      <div className="flex items-center gap-3">
-        <Badge variant="sectionLabel">{category}</Badge>
-        <span className="font-mono text-xs tracking-[0.15em] text-gray-500 uppercase">
-          {products.length} productos
-        </span>
+      <div className="">
+        <Badge variant="sectionLabel" className="mb-2">
+          {products.length} producto{products.length > 1 ? "s" : ""}
+        </Badge>
+        <h3 className="text-4xl text-white font-sans!">{category}</h3>
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
         {products.map((product) => (
-          <ShopifyProductCard
+          <ProductCard
             key={product.id}
             product={product}
             onAddToCart={onAddToCart}

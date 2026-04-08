@@ -1,8 +1,8 @@
+import { useMemo, useState } from "react";
 import { ProductCategoryGrid } from "@/components/products/ProductCategoryGrid";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/context/CartContext";
 import { groupProductsByCategory, products } from "@/data/products";
-import { useMemo, useState } from "react";
 
 export default function ProductsPage() {
   const [cartAdded, setCartAdded] = useState({});
@@ -29,13 +29,13 @@ export default function ProductsPage() {
 
   return (
     <div className="bg-app-bg min-h-screen px-6 py-16 lg:px-16">
-      <div className="mx-auto w-full max-w-[1440px] space-y-12">
-        <header className="space-y-4">
-          <Badge variant="sectionLabel">Catalogo</Badge>
-          <h1 className="text-4xl font-black tracking-tight text-white uppercase sm:text-5xl">
-            Todos Los Productos
+      <div className="mx-auto w-full max-w-360 space-y-24">
+        <header>
+          <Badge className="mb-2">Peptidos y suplementos</Badge>
+          <h1 className="text-4xl font-black tracking-tight text-white uppercase sm:text-5xl mb-8">
+            Productos
           </h1>
-          <p className="max-w-2xl text-sm leading-relaxed text-gray-400 sm:text-base">
+          <p className="max-w-2xl text-sm text-gray-400 sm:text-xl">
             Seleccion premium de peptidos con enfoque en recuperacion,
             rendimiento y bienestar. Explora por categoria y agrega al carrito
             en un click.
