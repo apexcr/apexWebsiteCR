@@ -6,6 +6,7 @@ import {
   RouterProvider,
 } from "@tanstack/react-router";
 import { AppLayout } from "./components/layout/AppLayout";
+import CheckoutFinal from "./pages/CheckoutFinal";
 import CheckoutPage from "./pages/CheckoutPage";
 import HomePage from "./pages/HomePage";
 import ProductDetailPage from "./pages/ProductDetailPage";
@@ -43,11 +44,18 @@ const checkoutRoute = createRoute({
   component: CheckoutPage,
 });
 
+const checkoutFinalRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/checkout/final",
+  component: CheckoutFinal,
+});
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   productsRoute,
   productDetailRoute,
   checkoutRoute,
+  checkoutFinalRoute,
 ]);
 
 const router = createRouter({

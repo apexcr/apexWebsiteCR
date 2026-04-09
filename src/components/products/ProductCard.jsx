@@ -66,7 +66,7 @@ export function ProductCard({ product, onAddToCart, cartAdded }) {
             className={cartAdded ? "scale-95 px-4" : "px-4"}
             onClick={() => onAddToCart(product.id)}
           >
-            Add
+            Agregar
           </Button>
         </div>
       </div>

@@ -26,7 +26,7 @@ export function HeroSection() {
 
   return (
     <section className="relative flex min-h-[90vh] w-full items-center overflow-hidden border-b border-gray-800 bg-black px-6 py-12 lg:px-16">
-      <div className="relative z-10 mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-8 lg:grid-cols-12">
+      <div className="relative z-10 mx-auto grid w-full max-w-350 grid-cols-1 items-center gap-8 lg:grid-cols-12">
         <div className="z-20 flex flex-col items-start space-y-5 lg:col-span-6">
           <Badge variant="hero">
             <span className="h-2 w-2 animate-pulse rounded-full bg-cyan-400" />

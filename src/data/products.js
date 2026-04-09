@@ -35,8 +35,11 @@ export function getDiscountedPrice(product) {
 }
 
 export function formatMoney(value) {
-  return new Intl.NumberFormat("en-US", {
+  return new Intl.NumberFormat("es-CR", {
     style: "currency",
-    currency: "USD",
+    currency: "CRC",
+    useGrouping: false,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   }).format(value ?? 0);
 }

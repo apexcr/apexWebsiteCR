@@ -11,7 +11,7 @@
     "discount": "",
     "description": "Retatrutide es un péptido innovador en investigación...",
     "isTopSeller": true,
-    "isHero": false
+    "isHero": true
   },
   {
     "id": 2,
@@ -94,7 +94,7 @@
     "price": 42000,
     "discount": "",
     "description": "El Melanotan II (MT-2) es un péptido...",
-    "isTopSeller": true,
+    "isTopSeller": false,
     "isHero": false
   },
   {
@@ -108,7 +108,7 @@
     "price": 70000,
     "discount": "",
     "description": "Esta combinación incluye CJC-1295...",
-    "isTopSeller": true,
+    "isTopSeller": false,
     "isHero": false
   },
   {
@@ -136,7 +136,7 @@
     "price": 65000,
     "discount": "",
     "description": "La Ipamorelina es un agonista...",
-    "isTopSeller": true,
+    "isTopSeller": false,
     "isHero": false
   },
   {

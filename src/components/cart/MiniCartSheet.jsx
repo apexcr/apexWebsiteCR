@@ -9,14 +9,8 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { useCart } from "@/context/CartContext";
+import { formatMoney } from "@/data/products";
 import { useNavigate } from "@tanstack/react-router";
-
-function formatCurrency(value) {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(value);
-}
 
 export function MiniCartSheet() {
   const navigate = useNavigate();
@@ -70,7 +64,7 @@ export function MiniCartSheet() {
                   <div className="mb-3 flex items-start justify-between gap-3">
                     <div>
                       <p className="font-mono text-xs tracking-[0.18em] text-gray-500 uppercase">
-                        {item.category}
+                        {item.presentation}
                       </p>
                       <h3 className="font-mono text-sm font-bold tracking-wide uppercase text-black">
                         {item.name}
@@ -118,7 +112,7 @@ export function MiniCartSheet() {
                     </div>
 
                     <p className="font-mono text-sm font-bold text-black">
-                      {formatCurrency(item.unitPrice * item.quantity)}
+                      {formatMoney(item.unitPrice * item.quantity)}
                     </p>
                   </div>
                 </li>
@@ -133,7 +127,7 @@ export function MiniCartSheet() {
               Subtotal
             </span>
             <span className="font-mono text-lg font-black text-black">
-              {formatCurrency(cartSubtotal)}
+              {formatMoney(cartSubtotal)}
             </span>
           </div>
 

@@ -1,5 +1,5 @@
-import { createContext, useContext, useMemo, useState } from "react";
 import { getDiscountedPrice } from "@/data/products";
+import { createContext, useContext, useMemo, useState } from "react";
 
 const CartContext = createContext(null);
 
@@ -30,7 +30,7 @@ export function CartProvider({ children }) {
           id: product.id,
           image: product.image,
           name: product.title,
-          category: product.category,
+          presentation: product.presentation,
           priceLabel: product.price,
           unitPrice: getDiscountedPrice(product) || parsePrice(product.price),
           quantity,
