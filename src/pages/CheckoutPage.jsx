@@ -25,6 +25,8 @@ export default function CheckoutPage() {
   const [appliedPromoCode, setAppliedPromoCode] = useState("");
   const [promoError, setPromoError] = useState("");
   const [productsForOrder, setProductsForOrder] = useState([]);
+  const [isSubmittingOrder, setIsSubmittingOrder] = useState(false);
+  const [orderSubmitError, setOrderSubmitError] = useState("");
   const [checkoutForm, setCheckoutForm] = useState({
     fullName: "",
     phone: "",
@@ -63,13 +65,14 @@ export default function CheckoutPage() {
     setPromoError("");
   };
 
-  const handleCheckout = () => {
-    handleOpenCheckoutModal(cartItems);
+  const handleCheckout = (products) => {
+    handleOpenCheckoutModal(products);
   };
 
   const handleOpenCheckoutModal = (products) => {
     setProductsForOrder(products);
     setFormErrors({});
+    setOrderSubmitError("");
     setIsCheckoutModalOpen(true);
   };
 
@@ -103,7 +106,7 @@ export default function CheckoutPage() {
     return Object.keys(errors).length === 0;
   };
 
-  const handleGenerateOrder = () => {
+  const handleGenerateOrder = async () => {
     if (!validateCheckoutForm()) return;
 
     const orderData = {
@@ -130,9 +133,32 @@ export default function CheckoutPage() {
       },
     };
 
-    sessionStorage.setItem("checkoutFinalData", JSON.stringify(orderData));
-    setIsCheckoutModalOpen(false);
-    navigate({ to: "/checkout/final" });
+    setIsSubmittingOrder(true);
+    setOrderSubmitError("");
+
+    try {
+      const response = await fetch("/api/send-order-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      if (!response.ok) {
+        throw new Error("No se pudo enviar la orden por correo");
+      }
+
+      sessionStorage.setItem("checkoutFinalData", JSON.stringify(orderData));
+      setIsCheckoutModalOpen(false);
+      navigate({ to: "/checkout/final" });
+    } catch {
+      setOrderSubmitError(
+        "No pudimos enviar tu orden por correo. Intenta nuevamente.",
+      );
+    } finally {
+      setIsSubmittingOrder(false);
+    }
   };
 
   return (
@@ -548,12 +574,18 @@ export default function CheckoutPage() {
           </div>
 
           <DialogFooter>
+            {orderSubmitError ? (
+              <p className="mr-auto text-xs font-bold tracking-wide text-red-400 uppercase">
+                {orderSubmitError}
+              </p>
+            ) : null}
             <Button
               type="button"
               variant="heroPrimary"
               onClick={handleGenerateOrder}
+              disabled={isSubmittingOrder}
             >
-              Generar Orden
+              {isSubmittingOrder ? "Generando..." : "Generar Orden"}
             </Button>
           </DialogFooter>
         </DialogContent>
