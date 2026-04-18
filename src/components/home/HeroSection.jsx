@@ -57,26 +57,6 @@ export function HeroSection() {
             )}
           </p>
 
-          <div className="flex gap-4 pt-2">
-            <Button
-              type="button"
-              variant="heroPrimary"
-              size="heroPrimary"
-              className="duration-300"
-              onClick={handleBuyNow}
-            >
-              COMPRAR AHORA
-            </Button>
-            <Button
-              type="button"
-              variant="heroSecondary"
-              size="heroSecondary"
-              className="duration-300"
-              onClick={() => navigate({ to: "/products" })}
-            >
-              VER Catálogo
-            </Button>
-          </div>
         </div>
 
         <div className="relative z-10 mt-8 flex items-center justify-center lg:col-span-6 lg:mt-0">
@@ -89,6 +69,27 @@ export function HeroSection() {
             />
             <div className="absolute -bottom-4 left-1/2 h-[30px] w-[200px] -translate-x-1/2 rounded-[100%] bg-black/40 blur-xl" />
           </div>
+        </div>
+        <div className="flex w-full flex-col gap-3 pt-2 lg:col-span-6 sm:flex-row">
+          <Button
+            type="button"
+            variant="heroPrimary"
+            size="heroPrimary"
+            className="w-full justify-center duration-300 sm:w-auto"
+            onClick={handleBuyNow}
+          >
+            COMPRAR AHORA
+          </Button>
+
+          <Button
+            type="button"
+            variant="heroSecondary"
+            size="heroSecondary"
+            className="w-full justify-center duration-300 sm:w-auto"
+            onClick={() => navigate({ to: "/products" })}
+          >
+            VER CATÁLOGO
+          </Button>
         </div>
       </div>
     </section>

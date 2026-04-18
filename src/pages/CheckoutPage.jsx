@@ -19,6 +19,7 @@ export default function CheckoutPage() {
   const navigate = useNavigate();
   const { cartItems, cartSubtotal, removeFromCart, updateItemQuantity } =
     useCart();
+
   const [isPromoOpen, setIsPromoOpen] = useState(false);
   const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
   const [promoInput, setPromoInput] = useState("");
@@ -66,10 +67,6 @@ export default function CheckoutPage() {
   };
 
   const handleCheckout = (products) => {
-    handleOpenCheckoutModal(products);
-  };
-
-  const handleOpenCheckoutModal = (products) => {
     setProductsForOrder(products);
     setFormErrors({});
     setOrderSubmitError("");
@@ -137,13 +134,16 @@ export default function CheckoutPage() {
     setOrderSubmitError("");
 
     try {
-      const response = await fetch("/api/send-order-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://withered-flower-93d6.apex-peptides-cr.workers.dev",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(orderData),
         },
-        body: JSON.stringify(orderData),
-      });
+      );
 
       if (!response.ok) {
         throw new Error("No se pudo enviar la orden por correo");
@@ -151,6 +151,47 @@ export default function CheckoutPage() {
 
       sessionStorage.setItem("checkoutFinalData", JSON.stringify(orderData));
       setIsCheckoutModalOpen(false);
+
+      const whatsappMessage = `
+*Nueva orden Apex*
+
+*Datos personales*
+Nombre: ${checkoutForm.fullName}
+Celular: ${checkoutForm.phone}
+Correo: ${checkoutForm.email}
+Cédula: ${checkoutForm.cedula}
+
+*Dirección*
+Provincia: ${checkoutForm.provincia}
+Cantón: ${checkoutForm.canton}
+Distrito: ${checkoutForm.distrito}
+Otras señas: ${checkoutForm.otrasSenas}
+
+*Productos*
+${productsForOrder
+  .map(
+    (p) =>
+      `- ${p.name} (${p.presentation}) x${p.quantity} = ₡${
+        p.unitPrice * p.quantity
+      }`,
+  )
+  .join("\n")}
+
+*Resumen*
+Subtotal: ₡${cartSubtotal}
+Envío: ₡${shipping}
+Descuento: ₡${discountAmount}
+Total: ₡${total}
+
+Código: ${appliedPromoCode || "N/A"}
+      `.trim();
+
+      const phoneNumber = "50660624449";
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+        whatsappMessage,
+      )}`;
+
+      window.open(whatsappUrl, "_blank");
       navigate({ to: "/checkout/final" });
     } catch {
       setOrderSubmitError(
@@ -210,7 +251,7 @@ export default function CheckoutPage() {
                       <div className="flex">
                         <p className="text-sm font-black tracking-wide text-white uppercase">
                           {item.name}{" "}
-                          <span className="ml-4 text-sm text-gray-400 font-mono">
+                          <span className="ml-4 text-sm font-mono text-gray-400">
                             {item.presentation}
                           </span>
                         </p>

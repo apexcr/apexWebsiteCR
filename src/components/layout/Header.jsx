@@ -8,7 +8,20 @@ export function Header({ mobileMenuOpen, setMobileMenuOpen }) {
 
   return (
     <header className="bg-app-bg/90 sticky top-0 z-50 flex w-full items-center justify-between border-b border-gray-900/80 px-6 py-6 backdrop-blur-md lg:px-16">
-      <h1 className="text-md uppercase">Apex Costa Rica</h1>
+      <Link
+        to="/"
+        className="flex items-center gap-3 transition hover:opacity-80"
+      >
+        <img
+          src="/images/products/apex-peptides-icon-white.svg"
+          alt="Apex Costa Rica"
+          className="h-12 object-contain"
+        />
+        <span className="text-sm font-bold tracking-widest text-white uppercase">
+          APEX CR OFICIAL
+        </span>
+      </Link>
+
       <nav className="hidden items-center md:flex">
         <ul className="flex space-x-10 text-[13px] tracking-[0.15em] text-gray-400">
           <li>
