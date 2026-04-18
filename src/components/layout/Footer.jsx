@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+
 export function Footer() {
   return (
     <footer className="bg-black border-t border-gray-900 mt-24">
@@ -28,10 +30,18 @@ export function Footer() {
             Enlaces rápidos
           </h3>
           <ul className="space-y-3 text-gray-400 text-sm">
-            <li className="hover:text-[#379AFF] transition">Inicio</li>
-            <li className="hover:text-[#379AFF] transition">Comprar Productos</li>
-            <li className="hover:text-[#379AFF] transition">Calculadora de Péptidos</li>
-            <li className="hover:text-[#379AFF] transition">Resultados de Laboratorio</li>
+            <li className="hover:text-[#379AFF] transition">
+              <Link to="/">Inicio</Link>
+            </li>
+            <li className="hover:text-[#379AFF] transition">
+              <Link to="/products">Comprar Productos</Link>
+            </li>
+            <li className="hover:text-[#379AFF] transition">
+              <Link to="/products">Calculadora de Péptidos</Link>
+            </li>
+            <li className="hover:text-[#379AFF] transition">
+              <Link to="/products">Resultados de Laboratorio</Link>
+            </li>
           </ul>
         </div>
 
@@ -41,10 +51,18 @@ export function Footer() {
             Soporte
           </h3>
           <ul className="space-y-3 text-gray-400 text-sm">
-            <li className="hover:text-[#379AFF] transition">Preguntas Frecuentes</li>
-            <li className="hover:text-[#379AFF] transition">Envío y Devoluciones</li>
-            <li className="hover:text-[#379AFF] transition">Términos de Servicio</li>
-            <li className="hover:text-[#379AFF] transition">Privacidad</li>
+            <li className="hover:text-[#379AFF] transition">
+              <Link to="/">Preguntas Frecuentes</Link>
+            </li>
+            <li className="hover:text-[#379AFF] transition">
+              <Link to="/">Envío y Devoluciones</Link>
+            </li>
+            <li className="hover:text-[#379AFF] transition">
+              <Link to="/">Términos de Servicio</Link>
+            </li>
+            <li className="hover:text-[#379AFF] transition">
+              <Link to="/">Privacidad</Link>
+            </li>
           </ul>
         </div>
       </div>
