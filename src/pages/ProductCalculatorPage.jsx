@@ -12,7 +12,7 @@ export default function ProductCalculatorPage() {
               Calculadora de Dosificación de Péptidos
             </h1>
             <p className="max-w-2xl text-sm text-gray-400 sm:text-xl">
-              Calcula exactamente cuánto líquido necesitas extraer en una jeringa de 1 mL para obtener la dosis correcta en mcg.
+              Calcula con precisión una dosis para research usando una jeringa medida en UI.
             </p>
           </div>
         </header>

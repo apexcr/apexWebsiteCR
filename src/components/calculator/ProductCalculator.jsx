@@ -88,8 +88,8 @@ export function ProductCalculator() {
           <h2 className="text-2xl font-black tracking-tight text-white sm:text-3xl">
             Mide agua, concentración y unidades de jeringa.
           </h2>
-          <p className="mt-3 max-w-2xl text-sm leading-6 text-gray-400 sm:text-base">
-            Ingresa los mg de péptido, el volumen de agua y la dosis deseada en mcg. La calculadora mostrará la concentración en mcg/mL y cuánto debes extraer en una jeringa de 1 mL.
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-gray-400 sm:text-base">
+              Ingresa los mg de péptido, el volumen de agua y la dosis deseada en mcg o mg. La calculadora mostrará cuánto debes extraer en una jeringa con medidas en UI para la dosis correcta.
           </p>
         </div>
       </div>
@@ -153,11 +153,16 @@ export function ProductCalculator() {
           <div className="rounded-[1.5rem] border border-gray-800 bg-black/60 p-5 text-sm text-gray-300">
             <p className="text-xs uppercase tracking-[0.25em] text-cyan-400">Cómo usar</p>
             <ol className="mt-4 space-y-3 list-decimal pl-5 text-gray-300">
-              <li>Ingresa el total de péptido en vial en mg.</li>
-              <li>Ingresa el volumen de agua en mL.</li>
-              <li>Ingresa tu dosis deseada en mcg o mg, seleccionando la unidad.</li>
-              <li>La calculadora te dará las unidades en UI y unidades de jeringa.</li>
+              <li>Escribe la cantidad total de péptido en el vial en mg.</li>
+              <li>Especifica cuántos mL de agua bacteriostática usaste para disolverlo.</li>
+              <li>Selecciona la unidad de dosis deseada: mcg para microdosis o mg para dosis en miligramos.</li>
+              <li>Ingresa la dosis que quieres administrar.</li>
+              <li>Revisa el resultado: la calculadora mostrará cuántas UI debes extraer para obtener la dosis correcta.</li>
+              <li>Si necesitas, reinicia el formulario para hacer otro cálculo con diferentes valores.</li>
             </ol>
+            <p className="mt-4 text-xs leading-5 text-gray-400">
+              Consejo: usa los valores exactos del vial y del volumen de disolución para obtener resultados precisos.
+            </p>
           </div>
         </div>
 
@@ -168,7 +173,7 @@ export function ProductCalculator() {
               <h3 className="mt-2 text-xl font-black text-white">Dosificación</h3>
             </div>
             <Button type="button" variant="heroSecondary" size="sm" onClick={handleReset}>
-              Reiniciar
+              Nuevo cálculo
             </Button>
           </div>
 
