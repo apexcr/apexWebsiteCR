@@ -9,6 +9,7 @@ import { AppLayout } from "./components/layout/AppLayout";
 import CheckoutFinal from "./pages/CheckoutFinal";
 import CheckoutPage from "./pages/CheckoutPage";
 import HomePage from "./pages/HomePage";
+import ProductCalculatorPage from "./pages/ProductCalculatorPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import ProductsPage from "./pages/ProductsPage";
 
@@ -32,6 +33,12 @@ const productsRoute = createRoute({
   component: ProductsPage,
 });
 
+const productCalculatorRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/calculator",
+  component: ProductCalculatorPage,
+});
+
 const productDetailRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/products/$id",
@@ -53,6 +60,7 @@ const checkoutFinalRoute = createRoute({
 const routeTree = rootRoute.addChildren([
   homeRoute,
   productsRoute,
+  productCalculatorRoute,
   productDetailRoute,
   checkoutRoute,
   checkoutFinalRoute,

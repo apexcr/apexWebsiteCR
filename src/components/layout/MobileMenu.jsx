@@ -53,6 +53,17 @@ export function MobileMenu({ open, onClose }) {
           </Link>
         </li>
         <li>
+          <Link
+            to="/calculator"
+            className="transition-colors"
+            activeProps={{ className: "text-brand-primary" }}
+            inactiveProps={{ className: "text-gray-300 hover:text-cyan-400" }}
+            onClick={onClose}
+          >
+            Calculadora
+          </Link>
+        </li>
+        <li>
           <button
             type="button"
             className="text-gray-300 transition-colors hover:text-cyan-400"
