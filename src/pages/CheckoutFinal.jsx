@@ -1,4 +1,6 @@
 import { Link } from "@tanstack/react-router";
+import { useCart } from "@/context/CartContext";
+import { useEffect } from "react";
 
 function getCheckoutFinalData() {
   try {
@@ -10,7 +12,13 @@ function getCheckoutFinalData() {
 }
 
 export default function CheckoutFinal() {
+  const { clearCart } = useCart();
   const data = getCheckoutFinalData();
+
+  useEffect(() => {
+    // Vaciar el carrito cuando se complete la compra
+    clearCart();
+  }, [clearCart]);
 
   return (
     <div className="bg-app-bg min-h-screen px-6 py-12 lg:px-16">
