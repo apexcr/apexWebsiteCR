@@ -24,11 +24,14 @@ This project now includes a Cloudflare Pages Function endpoint at:
 
 It sends checkout order data via Resend.
 
+
 ### Required environment variables (Cloudflare Pages)
 
 - `RESEND_API_KEY`
 - `ORDER_EMAIL_FROM` (must be a verified sender in Resend)
 - `ORDER_EMAIL_TO` (destination inbox)
+- `CONTACT_EMAIL_FROM` (must also be a verified sender in Resend)
+- `CONTACT_EMAIL_TO` (optional; defaults to `apex.peptides.cr@gmail.com` if not set)
 
 Set these in Cloudflare Pages:
 
