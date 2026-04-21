@@ -37,10 +37,10 @@ export function Footer() {
               <Link to="/products">Comprar Productos</Link>
             </li>
             <li className="hover:text-[#379AFF] transition">
-              <Link to="/products">Calculadora de Péptidos</Link>
+              <Link to="/calculator">Calculadora de Péptidos</Link>
             </li>
             <li className="hover:text-[#379AFF] transition">
-              <Link to="/products">Resultados de Laboratorio</Link>
+              <Link to="/contact">Contacto</Link>
             </li>
           </ul>
         </div>

@@ -56,12 +56,14 @@ export function Header({ mobileMenuOpen, setMobileMenuOpen }) {
             </Link>
           </li>
           <li>
-            <a
-              href="#contacto"
-              className="text-gray-400 transition-colors hover:text-cyan-400"
+            <Link
+              to="/contact"
+              className="transition-colors"
+              activeProps={{ className: "text-brand-primary" }}
+              inactiveProps={{ className: "text-gray-400 hover:text-cyan-400" }}
             >
               Contacto
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
