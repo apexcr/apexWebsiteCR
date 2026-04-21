@@ -1,11 +1,58 @@
+import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 export default function ContactPage() {
-  const handleEmailClick = () => {
-    const subject = encodeURIComponent("Quiero ser un vendedor autorizado");
-    const body = encodeURIComponent("Hola, me gustaría ser un vendedor autorizado de Apex Peptides. Por favor contactarme para más información.");
-    window.open(`mailto:apex.peptides.cr@gmail.com?subject=${subject}&body=${body}`);
+  const [formValues, setFormValues] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    contactType: "Vendedor autorizado",
+    subject: "Quiero ser un vendedor autorizado",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+  const [statusType, setStatusType] = useState("");
+
+  const setValue = (field, value) => {
+    setFormValues((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setStatusMessage("");
+    setStatusType("");
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/contact-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formValues),
+      });
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Error al enviar el mensaje.");
+      }
+
+      setStatusMessage("Mensaje enviado correctamente. Te contactaremos pronto.");
+      setStatusType("success");
+      setFormValues({
+        fullName: "",
+        email: "",
+        phone: "",
+        contactType: "Vendedor autorizado",
+        subject: "Quiero ser un vendedor autorizado",
+        message: "",
+      });
+    } catch (error) {
+      setStatusType("error");
+      setStatusMessage(error.message || "No se pudo enviar el mensaje.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleWhatsAppClick = () => {
@@ -38,9 +85,9 @@ export default function ContactPage() {
         </header>
 
         {/* Contact Options */}
-        <div className="grid gap-8 md:grid-cols-2">
-          {/* Email Section */}
-          <div className="rounded-[2rem] border border-gray-800 bg-[#05060d]/80 p-8 shadow-[0_0_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+        <div className="grid gap-8">
+          {/* Email Form */}
+          <div className="order-last rounded-[2rem] border border-gray-800 bg-[#05060d]/80 p-8 shadow-[0_0_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
             <div className="mb-6 flex items-center gap-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-cyan-500/20">
                 <svg className="h-6 w-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -49,27 +96,105 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="text-xl font-bold text-white">Email</h3>
-                <p className="text-sm text-gray-400">Para vendedores autorizados</p>
+                <p className="text-sm text-gray-400">Envíanos un mensaje directo</p>
               </div>
             </div>
             <p className="mb-6 text-gray-300">
-              ¿Quieres ser un vendedor autorizado de Apex Peptides? Contáctanos por email y te proporcionaremos toda la información necesaria.
+              Completa el formulario para enviar tu consulta directamente a apex.peptides.cr@gmail.com.
             </p>
-            <Button
-              onClick={handleEmailClick}
-              variant="heroPrimary"
-              size="heroPrimary"
-              className="w-full"
-            >
-              <svg className="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              Enviar Email
-            </Button>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <label className="block text-sm text-gray-300">
+                Nombre completo
+                <input
+                  type="text"
+                  value={formValues.fullName}
+                  onChange={(event) => setValue("fullName", event.target.value)}
+                  required
+                  className="mt-2 w-full rounded-3xl border border-gray-800 bg-black/60 px-4 py-3 text-white outline-none focus:border-cyan-400"
+                  placeholder="Ej. Juan Pérez"
+                />
+              </label>
+              <label className="block text-sm text-gray-300">
+                Correo electrónico
+                <input
+                  type="email"
+                  value={formValues.email}
+                  onChange={(event) => setValue("email", event.target.value)}
+                  required
+                  className="mt-2 w-full rounded-3xl border border-gray-800 bg-black/60 px-4 py-3 text-white outline-none focus:border-cyan-400"
+                  placeholder="Ej. correo@ejemplo.com"
+                />
+              </label>
+              <label className="block text-sm text-gray-300">
+                WhatsApp / Teléfono
+                <input
+                  type="tel"
+                  value={formValues.phone}
+                  onChange={(event) => setValue("phone", event.target.value)}
+                  required
+                  className="mt-2 w-full rounded-3xl border border-gray-800 bg-black/60 px-4 py-3 text-white outline-none focus:border-cyan-400"
+                  placeholder="Ej. +506 1234 5678"
+                />
+              </label>
+              <label className="block text-sm text-gray-300">
+                Tipo de consulta
+                <select
+                  value={formValues.contactType}
+                  onChange={(event) => setValue("contactType", event.target.value)}
+                  className="mt-2 w-full rounded-3xl border border-gray-800 bg-black/60 px-4 py-3 text-white outline-none focus:border-cyan-400"
+                >
+                  <option>Vendedor autorizado</option>
+                  <option>Compra / consulta</option>
+                  <option>Otro</option>
+                </select>
+              </label>
+              <label className="block text-sm text-gray-300">
+                Asunto
+                <input
+                  type="text"
+                  value={formValues.subject}
+                  onChange={(event) => setValue("subject", event.target.value)}
+                  required
+                  className="mt-2 w-full rounded-3xl border border-gray-800 bg-black/60 px-4 py-3 text-white outline-none focus:border-cyan-400"
+                  placeholder="Ej. Consulta general"
+                />
+              </label>
+              <label className="block text-sm text-gray-300">
+                Mensaje
+                <textarea
+                  value={formValues.message}
+                  onChange={(event) => setValue("message", event.target.value)}
+                  required
+                  rows={5}
+                  className="mt-2 w-full rounded-3xl border border-gray-800 bg-black/60 px-4 py-3 text-white outline-none focus:border-cyan-400"
+                  placeholder="Cuéntanos lo que necesitas..."
+                />
+              </label>
+              {statusMessage ? (
+                <div
+                  className={`rounded-3xl border p-4 text-sm ${
+                    statusType === "success"
+                      ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-200"
+                      : "border-red-500/30 bg-red-500/10 text-red-200"
+                  }`}
+                >
+                  {statusMessage}
+                </div>
+              ) : null}
+              <Button
+                type="submit"
+                variant="heroPrimary"
+                size="heroPrimary"
+                className="w-full"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Enviando..." : "Enviar mensaje"}
+              </Button>
+            </form>
           </div>
 
           {/* WhatsApp Section */}
-          <div className="rounded-[2rem] border border-gray-800 bg-[#05060d]/80 p-8 shadow-[0_0_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+          <div className="order-first rounded-[2rem] border border-gray-800 bg-[#05060d]/80 p-8 shadow-[0_0_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
             <div className="mb-6 flex items-center gap-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-500/20">
                 <svg className="h-6 w-6 text-green-400" fill="currentColor" viewBox="0 0 24 24">
